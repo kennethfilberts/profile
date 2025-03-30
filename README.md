@@ -18,27 +18,5 @@ Styling: Tailwind CSS & Framer Motion
 
 Hosting: Deployed on VPS
 
-# Installation
-Clone the repository:
-
-sh
-Copy
-Edit
-git clone https://github.com/your-username/portfoliiio.git  
-cd portfoliiio  
-Install dependencies:
-
-sh
-Copy
-Edit
-npm install  
-Run the development server:
-
-sh
-Copy
-Edit
-npm run dev  
-Open http://localhost:3000 in your browser.
-
-License
+# License
 This project is available under the MIT License.
