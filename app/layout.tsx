@@ -29,8 +29,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${poppinsSans.variable} ${praiseSans.variable} antialiased`}
+        suppressHydrationWarning
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem={true}
+        >
           {children}
         </ThemeProvider>
       </body>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,9 +7,14 @@ import { useTheme } from "next-themes";
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
-    <nav className="absolute top-0 left-0 w-full z-50 bg-background backdrop-blur-md border-b border-foreground/20 shadow-lg">
+    <nav className="absolute top-0 left-0 w-full z-30 bg-background backdrop-blur-md">
       <div className="container mx-auto px-6 sm:px-10 lg:px-16">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
@@ -26,9 +31,8 @@ const Navbar: React.FC = () => {
             {["Projects", "About", "Skills", "Contact"].map((item) => (
               <motion.a
                 key={item}
-                href={`#${item.toLowerCase()}`}
+                href={`${item.toLowerCase()}`}
                 className="relative text-foreground text-base transition duration-300 ease-in-out hover:text-primary group"
-                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.35 }}
               >
                 {item}
@@ -40,7 +44,9 @@ const Navbar: React.FC = () => {
               variant="ghost"
               className="text-foreground hover:bg-foreground/30 transition duration-300 ease-in-out"
             >
-              {theme === "dark" ? (
+              {!mounted ? (
+                <Sun className="w-6 h-6" />
+              ) : theme === "dark" ? (
                 <Sun className="w-6 h-6" />
               ) : (
                 <Moon className="w-6 h-6" />
@@ -52,9 +58,11 @@ const Navbar: React.FC = () => {
             <Button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               variant="ghost"
-              className="text-foreground hover:background-black/40 transition duration-300 ease-in-out"
+              className="text-foreground hover:bg-foreground/30 transition duration-300 ease-in-out"
             >
-              {theme === "dark" ? (
+              {!mounted ? (
+                <Moon className="w-6 h-6" />
+              ) : theme === "dark" ? (
                 <Sun className="w-6 h-6" />
               ) : (
                 <Moon className="w-6 h-6" />
@@ -96,16 +104,17 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-background backdrop-blur-lg border-t border-white/20 text-center py-6 space-y-4"
+            initial={{ opacity: 0, x: 20, y: 0 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            exit={{ opacity: 0, x: -20, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute top-16 left-0 right-0 bottom-0 z-40 md:hidden bg-background backdrop-blur-lg border-t border-white/20 text-center pt-6 pb-0 space-y-4 overflow-y-auto h-screen"
           >
-            {["Home", "About", "Services", "Contact"].map((item) => (
+            {["Projects", "About", "Skills", "Contact"].map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase()}`}
-                className="block text-foreground text-lg font-medium hover:background-black/40 transition duration-300 ease-in-out"
+                href={`${item.toLowerCase()}`}
+                className={`block text-foreground text-lg font-medium hover:bg-black/10 transition duration-300 ease-in-out px-4 py-3`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item}
