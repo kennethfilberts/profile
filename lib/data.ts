@@ -1,6 +1,8 @@
 import { Project } from "./types";
 import Project1Home from "@/public/assets/projects/project-1/project-1-home.png";
 import Project1Projects from "@/public/assets/projects/project-1/project-1-projects.png";
+import Project1About from "@/public/assets/projects/project-1/project-1-about.png";
+import Project1Contact from "@/public/assets/projects/project-1/project-1-contact.png";
 
 export const projectsData: Project[] = [
   {
@@ -8,25 +10,43 @@ export const projectsData: Project[] = [
     title: "Portfolio Website",
     description:
       "A sleek and responsive portfolio site built using Next.js, Tailwind CSS, and Framer Motion.",
-    category: "Web",
+    category: "Website",
     image: Project1Home,
-    previewImages: [Project1Home, Project1Projects],
+    previewImages: [
+      Project1Home,
+      Project1Projects,
+      Project1About,
+      Project1Contact,
+    ],
     github: "https://github.com/kennethfilberts/profile",
+    techStack: [
+      "Next.js",
+      "Tailwind CSS",
+      "TypeScript",
+      "Shadcn UI",
+      "Framer Motion",
+    ],
   },
   {
     id: "2",
-    title: "Client Dashboard",
-    description: "An admin panel for internal analytics and team management.",
-    category: "Web",
+    title: "Garbage Classification",
+    description: "A machine learning model to classify garbage images.",
+    category: "Machine Learning",
     image: "/images/dashboard-cover.png",
-    previewNote: "Private internal dashboard. No public preview available.",
-    github: "https://github.com/youruser/client-dashboard",
+    github: "https://github.com/kennethfilberts/garbage_classification.git",
+    techStack: [
+      "Next.js",
+      "Tailwind CSS",
+      "TypeScript",
+      "Shadcn UI",
+      "Framer Motion",
+    ],
   },
   {
     id: "3",
     title: "E-Commerce Website",
     description: "Full-stack shop built with Next.js and Stripe.",
-    category: "Web",
+    category: "Website",
     image: "/images/ecommerce-cover.png",
     previewImages: ["/images/shop-home.png", "/images/shop-cart.png"],
     github: "https://github.com/youruser/ecommerce-site",

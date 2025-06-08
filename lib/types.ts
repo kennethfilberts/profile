@@ -10,4 +10,5 @@ export interface Project {
   previewImages?: string[] | StaticImageData[];
   previewNote?: string;
   github?: string;
+  techStack?: string[];
 }

@@ -33,7 +33,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 60 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
           className="bg-background rounded-2xl w-full max-w-5xl max-h-[90vh] p-6 shadow-2xl"
         >
           <Image
@@ -117,14 +117,33 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-muted hover:bg-muted/70 text-sm font-medium px-4 py-2 rounded-lg text-blue-500 border border-muted"
+                  className="inline-block bg-muted hover:bg-muted/70 text-sm font-medium px-4 py-2 rounded-lg text-blue-500 border border-muted mb-3"
                 >
                   View Code on GitHub →
                 </a>
               ) : (
-                <p className="italic text-muted-foreground">
+                <p className="italic text-muted-foreground mb-3">
                   Code not available.
                 </p>
+              )}
+
+              {project.techStack && project.techStack.length > 0 && (
+                <div className="flex flex-col gap-2">
+                  <h4 className="text-lg font-semibold mb-1 text-foreground">
+                    Tech Stack
+                  </h4>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-1 text-xs font-medium rounded-full bg-muted text-foreground border border-border"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               )}
             </motion.div>
           </div>
