@@ -137,7 +137,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     {project.techStack.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-1 text-xs font-medium rounded-full bg-muted text-foreground border border-border"
+                        className="px-2 py-1 text-xs font-medium rounded-full bg-muted text-foreground border border-border hover:cursor-default"
                       >
                         {tech}
                       </span>

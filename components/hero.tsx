@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Photo from "@/public/assets/profile/self.png";
+import ModelViewer from "./hero/model-viewer";
 
 export default function Hero() {
   return (
@@ -58,18 +59,9 @@ export default function Hero() {
         transition={{ delay: 0.4, duration: 0.7 }}
         className="relative w-[14rem] h-[14rem] sm:w-64 sm:h-64 lg:w-80 lg:h-80 flex items-center justify-center"
       >
-        <div className="absolute inset-0 z-40 rounded-full bg-foreground/30 backdrop-blur-2xl blur-2xl opacity-80 shadow-2xl shadow-foreground/30" />
+        <div className="absolute inset-0 z-40 rounded-full bg-accent/30 backdrop-blur-2xl blur-2xl opacity-80 shadow-2xl shadow-bg-accent/30" />
 
-        <div className="relative w-full h-[25rem] lg:w-full lg:h-[40rem] overflow-hidden z-50">
-          <Image
-            src={Photo}
-            alt="Kenneth"
-            width={1000}
-            height={1000}
-            className="relative z-10 object-cover w-full h-[32rem] lg:w-full lg:h-[43rem]"
-            priority
-          />
-        </div>
+        <ModelViewer />
       </motion.div>
     </section>
   );
