@@ -27,12 +27,7 @@ export default function Projects() {
     <div className="font-[family-name:var(--font-poppins-sans)]">
       <Navbar />
 
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="min-h-screen px-6 py-24 sm:px-12 lg:px-44 text-foreground bg-background justify-center items-center flex flex-col"
-      >
+      <section className="min-h-screen px-6 py-24 sm:px-12 lg:px-44 text-foreground bg-background justify-center items-center flex flex-col">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,7 +61,16 @@ export default function Projects() {
             onProjectClick={setActiveProject}
           />
         </motion.div>
-      </motion.section>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-xl md:text-2xl font-bold text-center mt-6 mb-4 lg:my-6"
+        >
+          There are still more but sadly can't show due to NDA agreements.
+        </motion.h1>
+      </section>
 
       {activeProject && (
         <ProjectModal

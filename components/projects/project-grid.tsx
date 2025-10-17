@@ -21,7 +21,7 @@ export default function ProjectsGrid({
           layoutId={`project-${project.id}`}
           onClick={() => onProjectClick(project)}
           whileHover={{ scale: 1.01 }}
-          className="cursor-pointer overflow-hidden rounded-2xl shadow-md bg-background hover:shadow-xl transition duration-300"
+          className="cursor-pointer overflow-hidden rounded-2xl shadow-lg bg-background hover:shadow-xl transition duration-300"
         >
           <div className="relative w-full h-56 md:h-64 lg:h-72">
             <Image

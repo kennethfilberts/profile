@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import BlackLogo from "@/public/assets/logo/logo_black.png";
+import WhiteLogo from "@/public/assets/logo/logo_white.png";
+import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,21 +17,28 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className="absolute top-0 left-0 w-full z-30 bg-background backdrop-blur-md">
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16">
+    <nav className="absolute top-0 left-0 w-full z-30 backdrop-blur-md bg-transparent">
+      <div className="container mx-auto px-6 sm:px-10 lg:px-16 py-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <motion.a
-              href="/"
-              className="text-foreground font-extrabold font-[family-name:var(--font-bodoni-sans)] text-2xl relative"
-              whileHover={{ scale: 1.3 }}
-            >
-              KF
+            <motion.a href="/">
+              <Image
+                width={100}
+                height={100}
+                src={
+                  !mounted
+                    ? WhiteLogo
+                    : theme === "dark"
+                    ? WhiteLogo
+                    : BlackLogo
+                }
+                alt="black_logo"
+              ></Image>
             </motion.a>
           </div>
 
           <div className="hidden md:flex space-x-10 items-center">
-            {["Projects", "About", "Skills", "Contact"].map((item) => (
+            {["Projects", "About", "Contact"].map((item) => (
               <motion.a
                 key={item}
                 href={`${item.toLowerCase()}`}
@@ -110,7 +120,7 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="absolute top-16 left-0 right-0 bottom-0 z-40 md:hidden bg-background backdrop-blur-lg border-t border-white/20 text-center pt-6 pb-0 space-y-4 overflow-y-auto h-screen"
           >
-            {["Projects", "About", "Skills", "Contact"].map((item) => (
+            {["Projects", "About", "Contact"].map((item) => (
               <a
                 key={item}
                 href={`${item.toLowerCase()}`}

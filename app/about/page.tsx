@@ -9,20 +9,35 @@ import Photo from "@/public/assets/profile/self.jpg";
 
 const timeline = [
   {
-    year: "2019",
-    event: "Started my journey into web development.",
-  },
-  {
     year: "2021",
-    event: "Built my first full-stack app using MERN stack.",
+    events: [
+      "Started my college journey in Computer Science at Binus University.",
+    ],
   },
   {
     year: "2023",
-    event: "Dived into Next.js, Tailwind, and Framer Motion.",
+    events: [
+      "Started learning React, Next.js, Tailwind CSS, TypeScript, and Framer Motion.",
+      "Created my first personal portfolio website, machine learning model, and React Native Application.",
+      "Started work as a Frontend Developer Freelancer at a startup company based in Taiwan.",
+    ],
   },
   {
     year: "2024",
-    event: "Started working with real clients and launched several portfolios.",
+    events: [
+      "Moved to CBN Cloud as Frontend Developer Intern.",
+      "Started learning Cloud Computing and DevOps practices.",
+      "Started working with real clients and launched several portfolios.",
+      "Started my Master's degree in Computer Science at Binus University.",
+      "Back to Remote job at Roundbytes for part-time work as Project Manager.",
+    ],
+  },
+  {
+    year: "2025",
+    events: [
+      "Started learning Cybersecurity and Ethical Hacking.",
+      "Focused on finishing my Master's degree and personal projects.",
+    ],
   },
 ];
 
@@ -38,6 +53,11 @@ const funFacts = [
 export default function Contact() {
   return (
     <div className="font-[family-name:var(--font-poppins-sans)]">
+      <motion.div className="h-0  absolute top-[20%] right-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[20deg]"></motion.div>
+      <motion.div className="h-0  absolute bottom-[20%] left-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[20deg]"></motion.div>
+      <motion.div className="h-0  absolute bottom-[-20%] right-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[-20deg]"></motion.div>
+      <motion.div className="h-0  absolute bottom-[-60%] left-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[-20deg]"></motion.div>
+
       <Navbar />
 
       <motion.section
@@ -50,7 +70,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-4"
+          className="text-4xl font-bold text-center mb-4 mt-4"
         >
           About Me
         </motion.h2>
@@ -88,7 +108,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-16 w-full max-w-3xl"
+          className="mt-16 w-full max-w-2xl"
         >
           <h3 className="text-xl font-semibold mb-4">My Journey</h3>
           <div className="border-l-2 border-muted-foreground pl-6 space-y-6">
@@ -98,9 +118,16 @@ export default function Contact() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.1 }}
+                className="space-y-2"
               >
                 <p className="text-muted-foreground text-sm">{item.year}</p>
-                <p className="font-medium">{item.event}</p>
+                <ul className="list-disc list-inside space-y-1">
+                  {item.events.map((event, i) => (
+                    <li key={i} className="font-medium text-foreground">
+                      {event}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
@@ -110,7 +137,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-16 w-full max-w-2xl"
+          className="mt-16 w-full max-w-2xl mb-6"
         >
           <h3 className="text-2xl font-semibold mb-4 text-left">
             Did You Know?

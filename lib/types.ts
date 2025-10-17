@@ -6,6 +6,7 @@ export interface Project {
   description: string;
   image: string | StaticImageData;
   category: string;
+  url?: string;
   preview?: string;
   previewImages?: string[] | StaticImageData[];
   previewNote?: string;

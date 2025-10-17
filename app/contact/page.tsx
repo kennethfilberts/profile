@@ -151,13 +151,7 @@ export default function Contact() {
       <Footer />
 
       {sent && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.4 }}
-          className="fixed inset-0 flex items-center justify-center z-50 bg-black/90"
-        >
+        <motion.div className="fixed inset-0 flex items-center justify-center z-50 bg-black/90">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
