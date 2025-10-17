@@ -7,8 +7,8 @@ import Spline from "@splinetool/react-spline";
 
 export default function Hero() {
   return (
-    <main className="flex flex-col-reverse lg:flex-row items-center justify-center min-h-screen px-6 py-32 gap-6 lg:gap-32 sm:px-24 lg:px-44 text-foreground z-10">
-      <div className="flex flex-col gap-6 max-w-2xl text-center lg:text-left z-10">
+    <main className="flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen px-6 py-32 gap-6 lg:gap-32 sm:px-24 lg:px-44 text-foreground z-10">
+      <div className="flex flex-col mt-48 gap-4 max-w-2xl text-center lg:mt-0 lg:text-left z-10">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,9 +51,10 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div className="relative w-72 sm:w-96 lg:w-full h-w-72 sm:h-96 lg:h-[40rem] mt-[-5rem] lg:mt-[-10rem]">
-        <Spline scene="https://prod.spline.design/5u1NTspjNU5fMhJZ/scene.splinecode" />
-      </div>
+      <Spline
+        scene="https://prod.spline.design/5u1NTspjNU5fMhJZ/scene.splinecode"
+        className="absolute top-[-15%] left-[-2%] bottom-0 max-w-xl max-h-xl md:top-[-15%] md:left-[2%] md:max-w-4xl md:max-h-4xl lg:top-0 lg:left-[50%] lg:max-w-4xl lg:max-h-4xl z-0"
+      />
     </main>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
@@ -9,31 +11,49 @@ import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  if (!mounted) {
+    return (
+      <nav className="absolute top-0 left-0 w-full z-30 backdrop-blur-md bg-transparent opacity-0" />
+    );
+  }
+
   return (
-    <nav className="absolute top-0 left-0 w-full z-30 backdrop-blur-md bg-transparent">
-      <div className="container mx-auto px-6 sm:px-10 lg:px-16 py-4">
+    <motion.nav
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="absolute top-0 left-0 w-full z-30 backdrop-blur-md bg-transparent"
+    >
+      <div className="container mx-auto px-6 sm:px-10 lg:px-16">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <motion.a href="/">
               <Image
                 width={100}
                 height={100}
-                src={
-                  !mounted
-                    ? WhiteLogo
-                    : theme === "dark"
-                    ? WhiteLogo
-                    : BlackLogo
-                }
-                alt="black_logo"
-              ></Image>
+                src={resolvedTheme === "dark" ? WhiteLogo : BlackLogo}
+                alt="Site logo"
+                priority
+              />
             </motion.a>
           </div>
 
@@ -41,22 +61,23 @@ const Navbar: React.FC = () => {
             {["Projects", "About", "Contact"].map((item) => (
               <motion.a
                 key={item}
-                href={`${item.toLowerCase()}`}
+                href={`/${item.toLowerCase()}`}
                 className="relative text-foreground text-base transition duration-300 ease-in-out hover:text-primary group"
-                whileTap={{ scale: 0.35 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {item}
                 <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-in-out group-hover:w-full"></span>
               </motion.a>
             ))}
+
             <Button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() =>
+                setTheme(resolvedTheme === "dark" ? "light" : "dark")
+              }
               variant="ghost"
               className="text-foreground hover:bg-foreground/30 transition duration-300 ease-in-out"
             >
-              {!mounted ? (
-                <Sun className="w-6 h-6" />
-              ) : theme === "dark" ? (
+              {resolvedTheme === "dark" ? (
                 <Sun className="w-6 h-6" />
               ) : (
                 <Moon className="w-6 h-6" />
@@ -64,24 +85,26 @@ const Navbar: React.FC = () => {
             </Button>
           </div>
 
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
             <Button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() =>
+                setTheme(resolvedTheme === "dark" ? "light" : "dark")
+              }
               variant="ghost"
               className="text-foreground hover:bg-foreground/30 transition duration-300 ease-in-out"
             >
-              {!mounted ? (
-                <Moon className="w-6 h-6" />
-              ) : theme === "dark" ? (
+              {resolvedTheme === "dark" ? (
                 <Sun className="w-6 h-6" />
               ) : (
                 <Moon className="w-6 h-6" />
               )}
             </Button>
+
             <Button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               variant="ghost"
-              className="text-foreground hover:background-black/40 transition duration-300 ease-in-out"
+              className="text-foreground hover:bg-foreground/30 transition duration-300 ease-in-out"
             >
               <svg
                 className="h-6 w-6"
@@ -114,17 +137,17 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: 20, y: 0 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            exit={{ opacity: 0, x: -20, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute top-16 left-0 right-0 bottom-0 z-40 md:hidden bg-background backdrop-blur-lg border-t border-white/20 text-center pt-6 pb-0 space-y-4 overflow-y-auto h-screen"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.4 }}
+            className="absolute top-24 left-0 right-0 bottom-0 z-40 md:hidden bg-background backdrop-blur-lg border-t border-white/20 text-center pt-6 pb-0 space-y-4 overflow-y-hidden h-screen"
           >
             {["Projects", "About", "Contact"].map((item) => (
               <a
                 key={item}
-                href={`${item.toLowerCase()}`}
-                className={`block text-foreground text-lg font-medium hover:bg-black/10 transition duration-300 ease-in-out px-4 py-3`}
+                href={`/${item.toLowerCase()}`}
+                className="block text-foreground text-lg font-medium hover:bg-black/10 transition duration-300 ease-in-out px-4 py-3"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item}
@@ -133,7 +156,7 @@ const Navbar: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };
 

@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Button } from "@/components/ui/button"; // assuming you have ShadCN Button
 import Photo from "@/public/assets/profile/self.jpg";
 
 const timeline = [
@@ -52,11 +53,12 @@ const funFacts = [
 
 export default function Contact() {
   return (
-    <div className="font-[family-name:var(--font-poppins-sans)]">
-      <motion.div className="h-0  absolute top-[20%] right-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[20deg]"></motion.div>
-      <motion.div className="h-0  absolute bottom-[20%] left-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[20deg]"></motion.div>
-      <motion.div className="h-0  absolute bottom-[-20%] right-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[-20deg]"></motion.div>
-      <motion.div className="h-0  absolute bottom-[-60%] left-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[-20deg]"></motion.div>
+    <div className="font-[family-name:var(--font-poppins-sans)] relative overflow-hidden">
+      {/* Decorative Glows */}
+      <motion.div className="h-0 absolute top-[20%] right-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[20deg]" />
+      <motion.div className="h-0 absolute bottom-[20%] left-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[20deg]" />
+      <motion.div className="h-0 absolute bottom-[-20%] right-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[-20deg]" />
+      <motion.div className="h-0 absolute bottom-[-60%] left-0 shadow-[0_0_200px_50px_#D4A017] dark:shadow-[0_0_200px_30px_#FFFFFF] -rotate-[-20deg]" />
 
       <Navbar />
 
@@ -95,12 +97,27 @@ export default function Contact() {
             <h3 className="text-2xl font-semibold mb-2">
               Hi, I'm Kenneth Filbert
             </h3>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground mb-6">
               I'm a passionate frontend developer who loves building sleek and
               performant websites with a focus on user experience. My current
               stack includes Next.js, Tailwind CSS, TypeScript, and Framer
               Motion.
             </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              <a href="/assets/files/Kenneth%20Filbert%20ATS.pdf" download>
+                <Button
+                  variant="default"
+                  className="bg-[#D4A017] hover:bg-[#b88b15] text-white px-6 py-3 rounded-lg font-medium shadow-md transition-transform transform hover:cursor-pointer"
+                >
+                  Download CV
+                </Button>
+              </a>
+            </motion.div>
           </div>
         </motion.div>
 
