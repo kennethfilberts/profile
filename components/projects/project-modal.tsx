@@ -137,7 +137,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <div
                   className={`flex flex-col gap-4 ${
                     project.github && project.url
-                      ? "justify-between sm:flex-row"
+                      ? "justify-start sm:flex-row"
                       : ""
                   }`}
                 >
