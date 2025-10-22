@@ -46,7 +46,7 @@ const funFacts = [
   "I drink way too much coffee ☕",
   "I love building clean, responsive UIs 🖥️",
   "I dream of visiting Japan someday 🇯🇵",
-  "Big fan of minimalism in both code, design, and life ✨",
+  "Big fan of minimalism in code, design, and life ✨",
   "Dark mode enthusiast 🌒",
   "I enjoy playing badminton 🏸",
 ];
