@@ -1,11 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Spline from "@splinetool/react-spline";
+
+const Spline = dynamic(() => import("@splinetool/react-spline"), {
+  ssr: false,
+});
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const idleId = (window as any).requestIdleCallback(() =>
+        setMounted(true)
+      );
+      return () => (window as any).cancelIdleCallback(idleId);
+    } else {
+      timer = setTimeout(() => setMounted(true), 500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <main className="flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen px-6 py-32 gap-6 lg:gap-32 sm:px-24 lg:px-44 text-foreground z-10">
       <div className="flex flex-col mt-48 gap-4 max-w-2xl text-center lg:mt-0 lg:text-left z-10">
@@ -51,10 +71,18 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <Spline
-        scene="https://prod.spline.design/5u1NTspjNU5fMhJZ/scene.splinecode"
-        className="absolute top-[-15%] left-[-2%] bottom-0 max-w-xl max-h-xl md:top-[-15%] md:left-[2%] md:max-w-4xl md:max-h-4xl lg:top-0 lg:left-[50%] lg:max-w-4xl lg:max-h-4xl z-0"
-      />
+      <Suspense
+        fallback={
+          <div className="absolute top-[-15%] left-[-2%] bottom-0 max-w-xl max-h-xl md:top-[-15%] md:left-[2%] md:max-w-3xl md:max-h-3xl lg:top-0 lg:left-[50%] lg:max-w-[46rem] lg:max-h-[46rem] z-0 bg-muted/10 rounded-2xl animate-pulse" />
+        }
+      >
+        {mounted && (
+          <Spline
+            scene="https://prod.spline.design/5u1NTspjNU5fMhJZ/scene.splinecode"
+            className="absolute top-[-15%] left-[-2%] bottom-0 max-w-xl max-h-xl md:top-[-15%] md:left-[2%] md:max-w-3xl md:max-h-3xl lg:top-0 lg:left-[50%] lg:max-w-[46rem] lg:max-h-[46rem] z-0"
+          />
+        )}
+      </Suspense>
     </main>
   );
 }
