@@ -1,13 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-
-const Spline = dynamic(() => import("@splinetool/react-spline"), {
-  ssr: false,
-});
+import Spline from "@splinetool/react-spline";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -27,7 +23,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <main className="flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen px-6 py-32 gap-6 lg:gap-32 sm:px-24 lg:px-44 text-foreground z-10">
+    <main className="flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen px-6 py-30 gap-6 md:gap-16 lg:gap-32 sm:px-24 md:px-32 text-foreground z-10">
       <div className="flex flex-col mt-48 gap-4 max-w-2xl text-center lg:mt-0 lg:text-left z-10">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -73,15 +69,17 @@ export default function Hero() {
 
       <Suspense
         fallback={
-          <div className="absolute top-[-15%] left-[-2%] bottom-0 max-w-xl max-h-xl md:top-[-15%] md:left-[2%] md:max-w-3xl md:max-h-3xl lg:top-0 lg:left-[50%] lg:max-w-[46rem] lg:max-h-[46rem] z-0 bg-muted/10 rounded-2xl animate-pulse" />
+          <div className="absolute top-[-15%] left-[-2%] bottom-0 max-w-xl max-h-xl md:top-[-15%] md:left-[2%] md:max-w-3xl md:max-h-3xl lg:top-0 lg:left-[50%] lg:max-w-3xl lg:max-h-2xl z-0 bg-muted/10 rounded-2xl animate-pulse" />
         }
       >
-        {mounted && (
-          <Spline
-            scene="https://prod.spline.design/5u1NTspjNU5fMhJZ/scene.splinecode"
-            className="absolute top-[-15%] left-[-2%] bottom-0 max-w-xl max-h-xl md:top-[-15%] md:left-[2%] md:max-w-3xl md:max-h-3xl lg:top-0 lg:left-[50%] lg:max-w-[46rem] lg:max-h-[46rem] z-0"
-          />
-        )}
+        <div className="absolute inset-0 overflow-hidden">
+          {mounted && (
+            <Spline
+              scene="https://prod.spline.design/5u1NTspjNU5fMhJZ/scene.splinecode"
+              className="absolute top-[-15%] left-[-2%] bottom-0 max-w-xl max-h-xl md:top-[-15%] md:left-[2%] md:max-w-3xl md:max-h-3xl lg:top-0 lg:left-[50%] lg:max-w-3xl lg:max-h-2xl z-0"
+            />
+          )}
+        </div>
       </Suspense>
     </main>
   );

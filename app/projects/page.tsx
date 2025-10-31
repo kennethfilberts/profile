@@ -27,7 +27,7 @@ export default function Projects() {
     <div className="font-[family-name:var(--font-poppins-sans)]">
       <Navbar />
 
-      <section className="min-h-screen px-6 py-24 sm:px-12 lg:px-44 text-foreground bg-background justify-center items-center flex flex-col">
+      <section className="min-h-screen px-6 py-24 sm:px-12 text-foreground bg-background justify-center items-center flex flex-col">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
