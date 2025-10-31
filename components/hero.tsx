@@ -23,7 +23,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <main className="flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen px-6 py-30 gap-6 md:gap-16 lg:gap-32 sm:px-24 md:px-32 text-foreground z-10">
+    <main className="flex flex-col-reverse lg:flex-row items-center justify-between min-h-screen px-6 py-30 gap-6 md:gap-16 lg:gap-32 sm:px-24 md:px-32 xl:px-44 text-foreground z-10">
       <div className="flex flex-col mt-48 gap-4 max-w-2xl text-center lg:mt-0 lg:text-left z-10">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
