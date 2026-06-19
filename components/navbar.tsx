@@ -4,6 +4,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import BlackLogo from "@/public/assets/logo/logo_black.png";
+import WhiteLogo from "@/public/assets/logo/logo_white.png";
 
 const navItems = ["Projects", "About", "Contact"];
 
@@ -40,16 +42,7 @@ const Navbar: React.FC = () => {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 50);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -68,7 +61,7 @@ const Navbar: React.FC = () => {
         transition={{ duration: 1, ease: customEase, delay: 0.2 }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${
           scrolled || isMobileMenuOpen
-            ? "bg-background/90 backdrop-blur-xl border-foreground/10 will-change-[backdrop-filter]"
+            ? "bg-background/90 backdrop-blur-xl border-foreground/10"
             : "bg-transparent border-transparent py-6 md:py-0"
         }`}
       >
@@ -80,7 +73,7 @@ const Navbar: React.FC = () => {
             <Image
               width={80}
               height={80}
-              src={resolvedTheme === "dark" ? "/assets/logo/logo_white.png" : "/assets/logo/logo_black.png"}
+              src={resolvedTheme === "dark" ? WhiteLogo : BlackLogo}
               alt="Site logo"
               priority
               className="w-12 h-12 md:w-16 md:h-16 object-contain"
@@ -120,7 +113,7 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          <div className="md:hidden flex items-center gap-6 relative z-50">
+          <div className="md:hidden flex items-center gap-8 relative z-50">
             <button
               onClick={() =>
                 setTheme(resolvedTheme === "dark" ? "light" : "dark")
@@ -145,7 +138,7 @@ const Navbar: React.FC = () => {
                   [ Menu ]
                 </motion.span>
                 <motion.span
-                  className="absolute top-full left-0 w-full text-center"
+                  className="w-full text-center"
                   animate={{ y: isMobileMenuOpen ? "-100%" : "0%" }}
                   transition={{ duration: 0.5, ease: customEase }}
                 >

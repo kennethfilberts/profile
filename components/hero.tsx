@@ -40,9 +40,9 @@ export default function Hero() {
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-background text-foreground selection:bg-foreground selection:text-background">
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden hidden md:block">
           {mounted && (
-            <div className="absolute top-[-15%] left-[-2%] w-[110%] h-[115%] md:top-[-15%] md:left-[2%] md:w-[70%] md:h-[120%] lg:top-[-10%] lg:left-[45%] lg:w-[60%] lg:h-[120%] z-0">
+            <div className="absolute top-[10%] left-[5%] w-[90%] h-[50%] sm:top-[-15%] sm:left-[-2%] sm:w-[110%] sm:h-[115%] md:top-[-15%] md:left-[2%] md:w-[70%] md:h-[120%] lg:top-[-10%] lg:left-[45%] lg:w-[60%] lg:h-[120%] z-0">
               <Spline
                 scene="https://prod.spline.design/5u1NTspjNU5fMhJZ/scene.splinecode"
                 className="w-full h-full"
@@ -51,7 +51,7 @@ export default function Hero() {
           )}
         </div>
 
-      <div className="relative z-10 flex flex-col justify-between h-full w-full px-6 py-8 sm:px-12 md:px-24 md:py-16 pointer-events-none">
+      <div className="relative z-10 flex flex-col justify-between h-full w-full px-6 py-8 pt-20 sm:px-12 sm:pt-24 md:px-24 md:py-16 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <div className="flex flex-col justify-center flex-grow -mt-10 lg:-mt-0 mix-blend-difference">
+        <div className="flex flex-col justify-center flex-grow -mt-6 md:-mt-10 lg:-mt-0 mix-blend-difference">
           <div className="overflow-hidden">
             <motion.h1
               initial="hidden"
@@ -88,7 +88,7 @@ export default function Hero() {
               animate="visible"
               variants={textReveal}
               className="text-[18vw] lg:text-[13vw] font-black uppercase leading-[0.85] tracking-tighter text-transparent ml-0 lg:ml-[10vw]"
-              style={{ WebkitTextStroke: "2px var(--foreground)" }}
+              style={{ WebkitTextStroke: "1px var(--foreground)" }}
             >
               Filbert
             </motion.h1>
