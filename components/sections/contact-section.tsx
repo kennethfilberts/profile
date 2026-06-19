@@ -67,8 +67,8 @@ export default function ContactSection() {
           className="absolute inset-0 w-full h-full"
           style={{
             backgroundImage: `
-              linear-gradient(to right, color-mix(in oklch, var(--dark-fg) 3%, transparent) 1px, transparent 1px),
-              linear-gradient(to bottom, color-mix(in oklch, var(--dark-fg) 3%, transparent) 1px, transparent 1px)
+              linear-gradient(to right, color-mix(in oklch, var(--foreground) 3%, transparent) 1px, transparent 1px),
+              linear-gradient(to bottom, color-mix(in oklch, var(--foreground) 3%, transparent) 1px, transparent 1px)
             `,
             backgroundSize: "4rem 4rem",
             maskImage:
@@ -88,13 +88,13 @@ export default function ContactSection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[14vw] md:text-[9vw] font-black uppercase leading-none tracking-tighter text-transparent"
-            style={{ WebkitTextStroke: "2px var(--dark-fg)" }}
+            style={{ WebkitTextStroke: "2px var(--foreground)" }}
           >
             Initiate
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 border-t border-dark-fg/10 pt-12 lg:pt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 border-t border-foreground/10 pt-12 lg:pt-16">
           {/* Left Column: Info & Socials */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -107,27 +107,27 @@ export default function ContactSection() {
               <h3 className="text-3xl md:text-5xl font-light leading-tight mb-8">
                 Let's build something exceptional together.
               </h3>
-              <p className="text-dark-fg/50 text-sm md:text-base leading-relaxed font-light max-w-md mb-12">
+              <p className="text-foreground/50 text-sm md:text-base leading-relaxed font-light max-w-md mb-12">
                 Whether you have a complex AI integration in mind, a full-stack
                 project, or just want to connect — my inbox is always open.
               </p>
             </div>
 
-            <div className="flex flex-col gap-8 border-t border-dark-fg/10 pt-8 mt-auto">
+            <div className="flex flex-col gap-8 border-t border-foreground/10 pt-8 mt-auto">
               <div>
-                <h4 className="text-[10px] font-mono uppercase tracking-widest text-dark-fg/40 mb-4">
+                <h4 className="text-[10px] font-mono uppercase tracking-widest text-foreground/40 mb-4">
                   Direct Email
                 </h4>
                 <a
                   href="mailto:kennethfilbert686@gmail.com"
-                  className="text-lg md:text-xl font-light hover:text-dark-fg/70 transition-colors"
+                  className="text-lg md:text-xl font-light hover:text-foreground/70 transition-colors"
                 >
                   kennethfilbert686@gmail.com
                 </a>
               </div>
 
               <div>
-                <h4 className="text-[10px] font-mono uppercase tracking-widest text-dark-fg/40 mb-4">
+                <h4 className="text-[10px] font-mono uppercase tracking-widest text-foreground/40 mb-4">
                   Digital Presence
                 </h4>
                 <div className="flex gap-4">
@@ -137,7 +137,7 @@ export default function ContactSection() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 border border-dark-fg/10 flex items-center justify-center text-dark-fg/50 hover:text-dark-bg hover:bg-dark-fg transition-all duration-300"
+                      className="w-12 h-12 border border-foreground/10 flex items-center justify-center text-foreground/50 hover:text-background hover:bg-foreground transition-all duration-300"
                     >
                       {item.icon}
                       <span className="sr-only">{item.label}</span>
@@ -154,7 +154,7 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="lg:col-span-7 bg-dark-bg/20 backdrop-blur-sm p-6 md:p-12 border border-dark-fg/5 relative min-h-[500px] will-change-[backdrop-filter]"
+            className="lg:col-span-7 bg-background/20 backdrop-blur-sm p-6 md:p-12 border border-foreground/5 relative min-h-[500px] will-change-[backdrop-filter]"
           >
             <AnimatePresence mode="wait">
               {!sent ? (
@@ -170,7 +170,7 @@ export default function ContactSection() {
                 >
                   <div className="flex flex-col gap-10">
                     <div className="relative group">
-                      <label className="text-[10px] font-mono uppercase tracking-widest text-dark-fg/40 mb-3 block group-focus-within:text-dark-fg transition-colors">
+                      <label className="text-[10px] font-mono uppercase tracking-widest text-foreground/40 mb-3 block group-focus-within:text-foreground transition-colors">
                         01 // Name
                       </label>
                       <input
@@ -178,12 +178,12 @@ export default function ContactSection() {
                         name="name"
                         placeholder="John Doe"
                         required
-                        className="w-full bg-transparent border-b border-dark-fg/10 pb-4 text-dark-fg text-lg font-light placeholder:text-dark-fg/20 focus:outline-none focus:border-dark-fg transition-colors"
+                        className="w-full bg-transparent border-b border-foreground/10 pb-4 text-foreground text-lg font-light placeholder:text-foreground/20 focus:outline-none focus:border-foreground transition-colors"
                       />
                     </div>
 
                     <div className="relative group">
-                      <label className="text-[10px] font-mono uppercase tracking-widest text-dark-fg/40 mb-3 block group-focus-within:text-dark-fg transition-colors">
+                      <label className="text-[10px] font-mono uppercase tracking-widest text-foreground/40 mb-3 block group-focus-within:text-foreground transition-colors">
                         02 // Email
                       </label>
                       <input
@@ -191,19 +191,19 @@ export default function ContactSection() {
                         name="email"
                         placeholder="john@example.com"
                         required
-                        className="w-full bg-transparent border-b border-dark-fg/10 pb-4 text-dark-fg text-lg font-light placeholder:text-dark-fg/20 focus:outline-none focus:border-dark-fg transition-colors"
+                        className="w-full bg-transparent border-b border-foreground/10 pb-4 text-foreground text-lg font-light placeholder:text-foreground/20 focus:outline-none focus:border-foreground transition-colors"
                       />
                     </div>
 
                     <div className="relative group flex-grow">
-                      <label className="text-[10px] font-mono uppercase tracking-widest text-dark-fg/40 mb-3 block group-focus-within:text-dark-fg transition-colors">
+                      <label className="text-[10px] font-mono uppercase tracking-widest text-foreground/40 mb-3 block group-focus-within:text-foreground transition-colors">
                         03 // Message
                       </label>
                       <textarea
                         name="message"
                         placeholder="Detail your project or inquiry here..."
                         required
-                        className="w-full bg-transparent border-b border-dark-fg/10 pb-4 text-dark-fg text-lg font-light placeholder:text-dark-fg/20 focus:outline-none focus:border-dark-fg transition-colors resize-none h-32 md:h-40"
+                        className="w-full bg-transparent border-b border-foreground/10 pb-4 text-foreground text-lg font-light placeholder:text-foreground/20 focus:outline-none focus:border-foreground transition-colors resize-none h-32 md:h-40"
                       />
                     </div>
                   </div>
@@ -211,7 +211,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={sending}
-                    className="group flex items-center justify-between border border-dark-fg/20 px-8 py-5 hover:bg-dark-fg hover:text-dark-bg transition-all duration-300 w-full disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+                    className="group flex items-center justify-between border border-foreground/20 px-8 py-5 hover:bg-foreground hover:text-background transition-all duration-300 w-full disabled:opacity-50 disabled:cursor-not-allowed mt-4"
                   >
                     <span className="text-xs font-mono uppercase tracking-widest">
                       {sending ? "Transmitting..." : "Send Protocol"}
@@ -229,21 +229,21 @@ export default function ContactSection() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center bg-dark-bg-elevated/95 backdrop-blur-md border border-dark-fg/10 m-6 md:m-12"
+                  className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center bg-background/95 backdrop-blur-md border border-foreground/10 m-6 md:m-12"
                 >
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-dark-fg/40 mb-6 block">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-foreground/40 mb-6 block">
                     System_Status // 200_OK
                   </span>
-                  <h3 className="text-3xl font-light text-dark-fg mb-4">
+                  <h3 className="text-3xl font-light text-foreground mb-4">
                     Transmission Successful
                   </h3>
-                  <p className="text-dark-fg/50 font-light mb-12 max-w-sm">
+                  <p className="text-foreground/50 font-light mb-12 max-w-sm">
                     Your message has been securely routed to my inbox. I will
                     review your inquiry and respond shortly.
                   </p>
                   <button
                     onClick={resetForm}
-                    className="text-xs font-mono uppercase tracking-widest border-b border-dark-fg/20 pb-1 hover:border-dark-fg hover:text-dark-fg text-dark-fg/60 transition-colors"
+                    className="text-xs font-mono uppercase tracking-widest border-b border-foreground/20 pb-1 hover:border-foreground hover:text-foreground text-foreground/60 transition-colors"
                   >
                     [ Send Another Message ]
                   </button>
