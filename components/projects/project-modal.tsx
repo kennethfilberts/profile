@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/lib/types";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
   Carousel,
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useState, useEffect } from "react";
+import { X, ArrowUpRight, Github } from "lucide-react";
 
 interface ProjectModalProps {
   project: Project;
@@ -22,7 +22,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   const handleClose = () => {
     setIsVisible(false);
-    setTimeout(onClose, 350);
+    setTimeout(onClose, 500);
   };
 
   useEffect(() => {
@@ -32,188 +32,154 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [isVisible]);
 
+  const customEase = [0.16, 1, 0.3, 1];
+
   return (
     <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-2 sm:px-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-dark-bg/90 backdrop-blur-md p-4 sm:p-6 md:p-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: customEase }}
           onClick={handleClose}
         >
+          {/* Modal Container */}
           <motion.div
             onClick={(e) => e.stopPropagation()}
-            initial={{ opacity: 0, scale: 0.9, y: 40 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 40 }}
-            transition={{
-              type: "spring",
-              stiffness: 120,
-              damping: 18,
-              duration: 0.35,
-            }}
-            className="
-              bg-background rounded-2xl shadow-2xl 
-              w-full max-w-5xl max-h-[90vh]
-              overflow-y-auto overflow-x-hidden
-              p-4 sm:p-6 
-              scrollbar-thin scrollbar-thumb-muted scrollbar-track-transparent
-            "
+            layoutId={`project-container-${project.id}`}
+            className="relative bg-dark-bg-elevated border border-dark-fg/10 w-full max-w-7xl max-h-[90vh] overflow-hidden flex flex-col"
           >
-            <Image
-              src={project.image}
-              alt={project.title}
-              width={1200}
-              height={800}
-              className="rounded-xl object-cover mb-4 w-full max-h-[240px] sm:max-h-[300px]"
-            />
-
-            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2 text-center sm:text-left">
-              {project.title}
-            </h2>
-            <p className="text-muted-foreground mb-4 text-sm sm:text-base text-center sm:text-left">
-              {project.description}
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ delay: 0.15, duration: 0.3 }}
+            {/* Top Bar */}
+            <div className="flex justify-between items-center p-4 border-b border-dark-fg/10 bg-dark-bg/50">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-dark-fg/50">
+                Project_Detail // {project.category}
+              </span>
+              <button
+                onClick={handleClose}
+                className="text-[10px] font-mono uppercase tracking-widest text-dark-fg/50 hover:text-dark-fg transition-colors flex items-center gap-2"
               >
-                <h4 className="text-lg font-semibold mb-1 text-foreground text-center sm:text-left">
-                  Preview
-                </h4>
-                {project.preview ? (
-                  <iframe
-                    src={project.preview}
-                    className="w-full h-48 sm:h-56 rounded-lg border border-muted"
-                  />
-                ) : project.previewImages ? (
-                  <Carousel
-                    opts={{
-                      loop: true,
-                      align: "start",
-                    }}
-                    plugins={[
-                      Autoplay({
-                        delay: 3000,
-                        stopOnInteraction: false,
-                      }),
-                    ]}
-                    className="w-full"
-                  >
-                    <CarouselContent>
-                      {project.previewImages.map((src, idx) => (
-                        <CarouselItem key={idx} className="basis-full">
-                          <div className="relative w-full h-48 sm:h-56 overflow-hidden rounded-lg">
-                            <Image
-                              src={src}
-                              alt={`Preview ${idx}`}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                  </Carousel>
-                ) : (
-                  <p className="italic text-muted-foreground text-center sm:text-left">
-                    No preview available.
-                  </p>
-                )}
-              </motion.div>
+                [ Close ] <X className="w-3 h-3" />
+              </button>
+            </div>
 
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ delay: 0.25, duration: 0.3 }}
-              >
-                <div
-                  className={`flex flex-col gap-4 ${
-                    project.github && project.url
-                      ? "justify-start sm:flex-row"
-                      : ""
-                  }`}
-                >
-                  {project.github && (
-                    <div className="text-center sm:text-left">
-                      <h4 className="text-lg font-semibold mb-1 text-foreground">
-                        Code
-                      </h4>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-muted hover:bg-muted/70 text-sm font-medium px-4 py-2 rounded-lg text-blue-500 border border-muted transition-colors"
-                      >
-                        View Code on Github →
-                      </a>
-                    </div>
-                  )}
-
-                  {project.url && (
-                    <div className="text-center sm:text-left">
-                      <h4 className="text-lg font-semibold mb-1 text-foreground">
-                        URL
-                      </h4>
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block bg-muted hover:bg-muted/70 text-sm font-medium px-4 py-2 rounded-lg text-blue-500 border border-muted transition-colors"
-                      >
-                        Visit the website →
-                      </a>
+            {/* Scrollable Content Area */}
+            <div className="overflow-y-auto scrollbar-thin scrollbar-thumb-dark-fg/10 scrollbar-track-transparent">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                {/* Left side: Images & Carousel */}
+                <div className="lg:col-span-7 border-b lg:border-b-0 lg:border-r border-dark-fg/10">
+                  {project.preview ? (
+                    <iframe
+                      src={project.preview}
+                      className="w-full aspect-video border-none bg-dark-bg"
+                    />
+                  ) : project.previewImages &&
+                    project.previewImages.length > 0 ? (
+                    <Carousel
+                      opts={{ loop: true, align: "start" }}
+                      plugins={[
+                        Autoplay({ delay: 3000, stopOnInteraction: false }),
+                      ]}
+                      className="w-full"
+                    >
+                      <CarouselContent>
+                        {project.previewImages.map((src, idx) => (
+                          <CarouselItem key={idx}>
+                            <div className="relative w-full aspect-video bg-dark-bg-subtle">
+                              <Image
+                                src={src}
+                                alt={`${project.title} Preview ${idx}`}
+                                fill
+                                className="object-cover"
+                                placeholder="blur"
+                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx4P/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                              />
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                    </Carousel>
+                  ) : (
+                    <div className="relative w-full aspect-video bg-dark-bg-subtle">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx4P/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                      />
                     </div>
                   )}
                 </div>
 
-                {project.techStack && project.techStack?.length > 0 && (
-                  <div className="flex flex-col gap-2 mt-4 text-center sm:text-left">
-                    <h4 className="text-lg font-semibold mb-1 text-foreground">
-                      Tech Stack
-                    </h4>
-                    <div className="flex flex-wrap justify-center sm:justify-start gap-2">
-                      {project.techStack.map((tech, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-1 text-xs sm:text-sm font-medium rounded-full bg-muted text-foreground border border-border"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                {/* Right side: Info */}
+                <div className="lg:col-span-5 flex flex-col bg-dark-bg">
+                  <div className="p-6 md:p-10 flex-grow">
+                    <h2 className="text-3xl md:text-4xl font-light text-dark-fg mb-6 leading-tight">
+                      {project.title}
+                    </h2>
+
+                    <p className="text-dark-fg/60 text-sm md:text-base leading-relaxed font-light mb-12">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Stack */}
+                    {project.techStack && project.techStack.length > 0 && (
+                      <div className="mb-12">
+                        <h4 className="text-[10px] font-mono uppercase tracking-widest text-dark-fg/40 mb-4">
+                          Technology Stack
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {project.techStack.map((tech, idx) => (
+                            <span
+                              key={idx}
+                              className="px-3 py-1.5 text-xs font-mono border border-dark-fg/10 text-dark-fg/70"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
 
-                {project.previewNote && (
-                  <p className="italic text-muted-foreground mt-4 text-center sm:text-left">
-                    {project.previewNote}
-                  </p>
-                )}
-              </motion.div>
+                  {/* Action Links attached to bottom */}
+                  <div className="mt-auto border-t border-dark-fg/10 grid grid-cols-2 text-center text-xs font-mono uppercase tracking-widest">
+                    {project.github ? (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-4 border-r border-dark-fg/10 text-dark-fg/60 hover:text-dark-fg hover:bg-dark-fg/[0.02] transition-colors flex items-center justify-center gap-2"
+                      >
+                        <Github className="w-4 h-4" /> Source
+                      </a>
+                    ) : (
+                      <div className="p-4 border-r border-dark-fg/10 text-dark-fg/20 line-through">
+                        Private Repo
+                      </div>
+                    )}
+
+                    {project.url ? (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-4 text-dark-fg/60 hover:text-dark-fg hover:bg-dark-fg/[0.02] transition-colors flex items-center justify-center gap-2"
+                      >
+                        Live Site <ArrowUpRight className="w-4 h-4" />
+                      </a>
+                    ) : (
+                      <div className="p-4 text-dark-fg/20 line-through">
+                        Offline
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ delay: 0.3, duration: 0.3 }}
-              className="mt-6"
-            >
-              <Button
-                onClick={handleClose}
-                className="w-full sm:w-auto block mx-auto"
-              >
-                Close
-              </Button>
-            </motion.div>
           </motion.div>
         </motion.div>
       )}

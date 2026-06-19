@@ -1,10 +1,12 @@
+"use client";
+
 import React from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-background border-t border-foreground/20 text-foreground py-4 fixed bottom-0 left-0 z-30">
+    <footer className="w-full bg-background border-t border-foreground/20 text-foreground py-4">
       <div className="container mx-auto px-6 sm:px-10 lg:px-16 flex flex-col md:flex-row justify-between items-center">
         <p className="text-sm">
           © {new Date().getFullYear()} Kenneth Filbert. All rights reserved.

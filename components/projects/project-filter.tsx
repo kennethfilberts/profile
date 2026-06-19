@@ -1,6 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { memo } from "react";
 
 interface ProjectsFilterProps {
   categories: string[];
@@ -8,23 +9,35 @@ interface ProjectsFilterProps {
   setActiveCategory: (category: string) => void;
 }
 
-export default function ProjectsFilter({
+function ProjectsFilter({
   categories,
   activeCategory,
   setActiveCategory,
 }: ProjectsFilterProps) {
   return (
-    <div className="flex flex-wrap justify-center gap-4 mb-8">
+    <div className="flex flex-wrap gap-6 md:gap-10 border-b border-dark-fg/10 pb-4">
       {categories.map((cat) => (
-        <Button
+        <button
           key={cat}
-          variant={cat === activeCategory ? "default" : "outline"}
           onClick={() => setActiveCategory(cat)}
-          className="capitalize"
+          className={`text-xs md:text-sm font-mono uppercase tracking-[0.2em] transition-colors relative group py-2 ${
+            cat === activeCategory
+              ? "text-dark-fg"
+              : "text-dark-fg/40 hover:text-dark-fg"
+          }`}
         >
           {cat}
-        </Button>
+          {cat === activeCategory && (
+            <motion.span
+              layoutId="activeCategoryFilter"
+              className="absolute -bottom-[17px] left-0 w-full h-[1px] bg-dark-fg"
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            />
+          )}
+        </button>
       ))}
     </div>
   );
 }
+
+export default memo(ProjectsFilter);

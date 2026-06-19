@@ -1,20 +1,47 @@
 import { Project } from "./types";
-import Project1Home from "@/public/assets/projects/project-1/project-1-home.png";
-import Project1Projects from "@/public/assets/projects/project-1/project-1-projects.png";
-import Project1About from "@/public/assets/projects/project-1/project-1-about.png";
-import Project1Contact from "@/public/assets/projects/project-1/project-1-contact.png";
 
-import ProjectCruisemabiHome from "@/public/assets/projects/project-cruisemabi/cruisemabi-home.png";
-import ProjectCMSCruisemabi from "@/public/assets/projects/project-cruisemabi/cruisemabi-cms.png";
+export const timeline = [
+  {
+    year: "2021",
+    events: [
+      "Started my college journey in Computer Science at Binus University.",
+    ],
+  },
+  {
+    year: "2023",
+    events: [
+      "Started learning React, Next.js, Tailwind CSS, TypeScript, and Framer Motion.",
+      "Created my first personal portfolio website, machine learning model, and React Native Application.",
+      "Started work as a Frontend Developer Freelancer at a startup company based in Taiwan.",
+    ],
+  },
+  {
+    year: "2024",
+    events: [
+      "Moved to CBN Cloud as Frontend Developer Intern.",
+      "Started learning Cloud Computing and DevOps practices.",
+      "Started working with real clients and launched several portfolios.",
+      "Started my Master's degree in Computer Science at Binus University.",
+      "Back to Remote job at Roundbytes for part-time work as Project Manager.",
+    ],
+  },
+  {
+    year: "2025",
+    events: [
+      "Started learning Cybersecurity and Ethical Hacking.",
+      "Focused on finishing my Master's degree and personal projects.",
+    ],
+  },
+];
 
-import ProjectSPPIHome from "@/public/assets/projects/project-sppi/sppi-home.png";
-import ProjectSPPIMap from "@/public/assets/projects/project-sppi/sppi-map.png";
-
-import ProjectBRAHome from "@/public/assets/projects/project-bra/bra-home.png";
-import ProjectBRAFeature1 from "@/public/assets/projects/project-bra/bra-feature1.png";
-import ProjectBRAFeature2 from "@/public/assets/projects/project-bra/bra-feature2.png";
-
-import ProjectGCResult from "@/public/assets/projects/project-garbage-classification/gc-result.png";
+export const funFacts = [
+  "I drink way too much coffee ☕",
+  "I love building clean, responsive UIs 🖥️",
+  "I dream of visiting Japan someday 🇯🇵",
+  "Big fan of minimalism in code, design, and life ✨",
+  "Dark mode enthusiast 🌒",
+  "I enjoy playing badminton 🏸",
+];
 
 export const projectsData: Project[] = [
   {
@@ -24,12 +51,12 @@ export const projectsData: Project[] = [
       "A sleek and responsive portfolio site built using Next.js, Tailwind CSS, and Framer Motion.",
     category: "Website",
     url: "https://kennethfilberts.my.id/",
-    image: Project1Home,
+    image: "/assets/projects/project-1/project-1-home.png",
     previewImages: [
-      Project1Home,
-      Project1Projects,
-      Project1About,
-      Project1Contact,
+      "/assets/projects/project-1/project-1-home.png",
+      "/assets/projects/project-1/project-1-projects.png",
+      "/assets/projects/project-1/project-1-about.png",
+      "/assets/projects/project-1/project-1-contact.png",
     ],
     github: "https://github.com/kennethfilberts/profile",
     techStack: [
@@ -47,7 +74,7 @@ export const projectsData: Project[] = [
       "A website that shows the itinerary andd fact sheets of cruise ships that collaborate with Cruisemabi.",
     category: "Website",
     url: "https://cruisemabi.info/",
-    image: ProjectCruisemabiHome,
+    image: "/assets/projects/project-cruisemabi/cruisemabi-home.png",
     github: "https://github.com/kennethfilberts/website-cruisemabi",
     techStack: [
       "Next.js",
@@ -63,7 +90,7 @@ export const projectsData: Project[] = [
     title: "CMS Cruisemabi",
     description: "Admin side for Cruisemabi website built with Strapi.",
     category: "Website",
-    image: ProjectCMSCruisemabi,
+    image: "/assets/projects/project-cruisemabi/cruisemabi-cms.png",
     github: "https://github.com/kennethfilberts/cms-cruisemabi",
     techStack: ["Strapi", "Docker", "Javascript", "API"],
   },
@@ -74,9 +101,9 @@ export const projectsData: Project[] = [
       "A website for SPPI (an educational institution) to showcase their programs and facilitate student registrations.",
     category: "Website",
     previewNote: "I only did partial on this website, because it was a team project while I'm intern at CBN Cloud.",
-    image: ProjectSPPIHome,
+    image: "/assets/projects/project-sppi/sppi-home.png",
     url: "https://sppi.id/",
-    previewImages: [ProjectSPPIHome, ProjectSPPIMap],
+    previewImages: ["/assets/projects/project-sppi/sppi-home.png", "/assets/projects/project-sppi/sppi-map.png"],
     techStack: ["React", "Tailwind CSS", "JavaScript", "REST API"],
   },
   {
@@ -85,9 +112,9 @@ export const projectsData: Project[] = [
     description:
       "A mobile app that encourages recycling among Binus University students by providing rewards for recycling activities.",
     category: "Mobile",
-    image: ProjectBRAHome,
+    image: "/assets/projects/project-bra/bra-home.png",
     github: "https://github.com/kennethfilberts/binus-recycle-app",
-    previewImages: [ProjectBRAHome, ProjectBRAFeature1, ProjectBRAFeature2],
+    previewImages: ["/assets/projects/project-bra/bra-home.png", "/assets/projects/project-bra/bra-feature1.png", "/assets/projects/project-bra/bra-feature2.png"],
     techStack: [
       "React Native",
       "JavaScript",
@@ -102,7 +129,7 @@ export const projectsData: Project[] = [
     description:
       "A machine learning model that classifies different types of garbage to promote effective waste management and recycling for Binus Recycle App.",
     category: "Machine Learning",
-    image: ProjectGCResult,
+    image: "/assets/projects/project-garbage-classification/gc-result.png",
     github: "https://github.com/kennethfilberts/garbage_classification",
     techStack: ["Python", "Tensorflow", "ResNet50V2", "Tensorflow JS"],
   },
