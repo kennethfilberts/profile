@@ -36,7 +36,8 @@ export default function ProjectsSection() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[14vw] md:text-[9vw] font-black uppercase leading-none tracking-tighter text-transparent"
-            style={{ WebkitTextStroke: "2px var(--dark-fg)" }}
+            // Changed from var(--dark-fg) to var(--foreground) so the text stroke adapts to the theme
+            style={{ WebkitTextStroke: "2px var(--foreground)" }}
           >
             Selected Works
           </motion.h2>
@@ -54,7 +55,8 @@ export default function ProjectsSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="border-t border-l border-dark-fg/10"
+            // Replaced border-dark-fg/10 with border-foreground/10
+            className="border-t border-l border-foreground/10"
           >
             <ProjectsGrid
               projects={filteredProjects}
@@ -67,7 +69,8 @@ export default function ProjectsSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-16 md:mt-24 pt-8 border-t border-dark-fg/10 flex justify-between items-center text-xs font-mono uppercase tracking-widest text-dark-fg/40"
+          // Replaced border-dark-fg/10 and text-dark-fg/40 with standard foreground utility classes
+          className="mt-16 md:mt-24 pt-8 border-t border-foreground/10 flex justify-between items-center text-xs font-mono uppercase tracking-widest text-foreground/40"
         >
           <span>[ Restricted Access ]</span>
           <span className="text-right">
