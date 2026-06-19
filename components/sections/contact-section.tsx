@@ -7,12 +7,12 @@ import { ArrowRight, Loader2, Github, Linkedin, Mail } from "lucide-react";
 const socialLinks = [
   {
     icon: <Linkedin className="w-5 h-5" />,
-    href: "https://linkedin.com/in/yourprofile",
+    href: "https://linkedin.com/in/kennethfilberts",
     label: "LinkedIn",
   },
   {
     icon: <Github className="w-5 h-5" />,
-    href: "https://github.com/yourprofile",
+    href: "https://github.com/kennethfilberts",
     label: "GitHub",
   },
   {
