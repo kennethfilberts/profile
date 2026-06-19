@@ -26,7 +26,7 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative w-full bg-dark-bg text-dark-fg py-24 md:py-32 selection:bg-dark-fg selection:text-dark-bg min-h-screen"
+      className="relative w-full bg-background text-foreground selection:bg-foreground selection:text-background py-24 md:py-32 min-h-screen"
     >
       <div className="relative z-10 px-6 sm:px-12 md:px-24 max-w-[1600px] mx-auto">
         <div className="mb-16 md:mb-24 overflow-hidden py-4">
